@@ -11,6 +11,25 @@
             <td>Horas/semana</td>
             <td>Numero de identificacion</td>
           </tr>
+          <tr v-for="list_user in list_users" :key="list_user.id">
+            <td>{{ list_user.firstName }} {{ list_user.lastName }}</td>
+            <div
+              v-for="list_position in list_positions"
+              :key="list_position.id"
+            >
+              <td v-for="position in list_user.positionId" :key="position">
+                {{ position === list_position.id ? list_position.name : '' }}
+              </td>
+            </div>
+            <!-- <div
+              v-for="list_location in list_locations"
+              :key="list_location.id"
+            > -->
+            <td>{{ list_user.locationId }}</td>
+            <!-- </div> -->
+            <td></td>
+            <td>{{ list_user.employeeId }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -26,6 +45,7 @@ export default {
       title: 'Vista de Usuarios',
       list_users: null,
       list_positions: null,
+      list_locations: null,
     };
   },
 
@@ -48,6 +68,13 @@ export default {
         .then((positions) => {
           console.log(positions.data);
           this.list_positions = positions.data;
+        })
+        .catch((e) => console.log(e));
+      axios
+        .get('http://localhost:3004/locations')
+        .then((locations) => {
+          console.log(locations.data);
+          this.list_locations = locations.data;
         })
         .catch((e) => console.log(e));
     },
