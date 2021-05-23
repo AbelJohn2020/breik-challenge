@@ -4,14 +4,18 @@
     <div>
       <table>
         <tbody>
-          <tr>
+          <tr class="user-row">
             <td>Nombre</td>
             <td>Cargos</td>
             <td>Sucursales</td>
             <td>Horas/semana</td>
             <td>Numero de identificacion</td>
           </tr>
-          <tr v-for="list_user in list_users" :key="list_user.id">
+          <tr
+            class="user-row"
+            v-for="list_user in list_users"
+            :key="list_user.id"
+          >
             <td>{{ list_user.firstName }} {{ list_user.lastName }}</td>
             <div
               v-for="list_position in list_positions"
@@ -29,7 +33,7 @@
                 {{ location === list_location.id ? list_location.name : '' }}
               </div>
             </td>
-            <td></td>
+            <td>in progress</td>
             <td>{{ list_user.employeeId }}</td>
           </tr>
         </tbody>
@@ -83,3 +87,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.user-row {
+  padding: 8px 12px;
+}
+</style>
