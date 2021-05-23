@@ -15,18 +15,20 @@
             <td>{{ list_user.firstName }} {{ list_user.lastName }}</td>
             <div
               v-for="list_position in list_positions"
-              :key="list_position.id"
+              :key="list_position.name"
             >
               <td v-for="position in list_user.positionId" :key="position">
                 {{ position === list_position.id ? list_position.name : '' }}
               </td>
             </div>
-            <!-- <div
-              v-for="list_location in list_locations"
-              :key="list_location.id"
-            > -->
-            <td>{{ list_user.locationId }}</td>
-            <!-- </div> -->
+            <td v-for="location in list_user.locationId" :key="location">
+              <div
+                v-for="list_location in list_locations"
+                :key="list_location.id"
+              >
+                {{ location === list_location.id ? list_location.name : '' }}
+              </div>
+            </td>
             <td></td>
             <td>{{ list_user.employeeId }}</td>
           </tr>
